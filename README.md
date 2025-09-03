@@ -1,8 +1,7 @@
-# Nombre de la aplicación
+# MindConnect
 
-Reemplace este texto con una descripción de su aplicación. Revise el archivo [HELP.md](HELP.md) donde hay mas información sobre como usar esta plantilla.
-
-Autor(es): Nombre del estudiante
+MindConnect es una aplicación enfocada en el bienestar emocional y la salud mental. Ofrece un espacio anónimo para registrar el estado de ánimo diario, acceder a ejercicios de relajación y hablar con otros usuarios de forma confidencial. La app emplea Firebase para el manejo seguro de datos y propone herramientas de autoayuda accesibles para cualquier persona, sin necesidad de contacto directo con profesionales
+Autor(es): Jency Tatiana Romero Martinez
 
 ## Referencias
 
