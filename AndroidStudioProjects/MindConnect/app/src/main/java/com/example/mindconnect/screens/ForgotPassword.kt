@@ -15,13 +15,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun RegisterScreen(
-    onRegisterClick: () -> Unit = {}
+fun ForgotPasswordScreen(
+    onResetPasswordClick: () -> Unit = {}
 ) {
-    var nombre by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
-    var contrasena by remember { mutableStateOf("") }
-    var telefono by remember { mutableStateOf("") }
+    var nuevaContrasena by remember { mutableStateOf("") }
+    var confirmarContrasena by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
@@ -36,7 +35,6 @@ fun RegisterScreen(
         ) {
             Spacer(modifier = Modifier.height(60.dp))
 
-            // Card central con los campos
             Card(
                 modifier = Modifier
                     .width(320.dp)
@@ -54,35 +52,13 @@ fun RegisterScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "Registro",
-                        fontSize = 24.sp,
+                        text = "Olvido su clave",
+                        fontSize = 22.sp,
                         fontWeight = FontWeight.Normal,
-                        color = Color(0xFF5B7C99)
+                        color = Color(0xFF4A4A4A)
                     )
 
-                    Spacer(modifier = Modifier.height(32.dp))
-
-                    OutlinedTextField(
-                        value = nombre,
-                        onValueChange = { nombre = it },
-                        placeholder = {
-                            Text(
-                                "Nombre",
-                                color = Color(0xFFBBBBBB),
-                                fontSize = 14.sp
-                            )
-                        },
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = Color(0xFFE0E0E0),
-                            unfocusedBorderColor = Color(0xFFE0E0E0),
-                            focusedTextColor = Color(0xFF4A4A4A),
-                            unfocusedTextColor = Color(0xFF4A4A4A)
-                        ),
-                        shape = RoundedCornerShape(8.dp)
-                    )
-
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(40.dp))
 
                     OutlinedTextField(
                         value = email,
@@ -107,11 +83,11 @@ fun RegisterScreen(
                     Spacer(modifier = Modifier.height(16.dp))
 
                     OutlinedTextField(
-                        value = contrasena,
-                        onValueChange = { contrasena = it },
+                        value = nuevaContrasena,
+                        onValueChange = { nuevaContrasena = it },
                         placeholder = {
                             Text(
-                                "Contraseña",
+                                "Nueva Contraseña",
                                 color = Color(0xFFBBBBBB),
                                 fontSize = 14.sp
                             )
@@ -130,15 +106,16 @@ fun RegisterScreen(
                     Spacer(modifier = Modifier.height(16.dp))
 
                     OutlinedTextField(
-                        value = telefono,
-                        onValueChange = { telefono = it },
+                        value = confirmarContrasena,
+                        onValueChange = { confirmarContrasena = it },
                         placeholder = {
                             Text(
-                                "Teléfono",
+                                "Confirmar nueva contraseña",
                                 color = Color(0xFFBBBBBB),
                                 fontSize = 14.sp
                             )
                         },
+                        visualTransformation = PasswordVisualTransformation(),
                         modifier = Modifier.fillMaxWidth(),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = Color(0xFFE0E0E0),
@@ -152,7 +129,7 @@ fun RegisterScreen(
             }
 
             Button(
-                onClick = { onRegisterClick() },
+                onClick = { onResetPasswordClick() },
                 modifier = Modifier
                     .width(200.dp)
                     .height(48.dp)
@@ -176,6 +153,6 @@ fun RegisterScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun RegisterScreenPreview() {
-    RegisterScreen()
+fun ForgotPasswordScreenPreview() {
+    ForgotPasswordScreen()
 }

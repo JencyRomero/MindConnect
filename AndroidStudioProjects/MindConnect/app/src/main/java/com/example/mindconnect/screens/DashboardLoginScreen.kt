@@ -3,25 +3,27 @@ package com.example.mindconnect.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun RegisterScreen(
+fun DashboardLoginScreen(
+    onLoginClick: () -> Unit = {},
+    onForgotPasswordClick: () -> Unit = {},
     onRegisterClick: () -> Unit = {}
 ) {
-    var nombre by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var contrasena by remember { mutableStateOf("") }
-    var telefono by remember { mutableStateOf("") }
 
     Box(
         modifier = Modifier
@@ -50,40 +52,9 @@ fun RegisterScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 32.dp, vertical = 40.dp),
+                        .padding(horizontal = 32.dp, vertical = 50.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = "Registro",
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Normal,
-                        color = Color(0xFF5B7C99)
-                    )
-
-                    Spacer(modifier = Modifier.height(32.dp))
-
-                    OutlinedTextField(
-                        value = nombre,
-                        onValueChange = { nombre = it },
-                        placeholder = {
-                            Text(
-                                "Nombre",
-                                color = Color(0xFFBBBBBB),
-                                fontSize = 14.sp
-                            )
-                        },
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = Color(0xFFE0E0E0),
-                            unfocusedBorderColor = Color(0xFFE0E0E0),
-                            focusedTextColor = Color(0xFF4A4A4A),
-                            unfocusedTextColor = Color(0xFF4A4A4A)
-                        ),
-                        shape = RoundedCornerShape(8.dp)
-                    )
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
                     OutlinedTextField(
                         value = email,
                         onValueChange = { email = it },
@@ -104,7 +75,7 @@ fun RegisterScreen(
                         shape = RoundedCornerShape(8.dp)
                     )
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(24.dp))
 
                     OutlinedTextField(
                         value = contrasena,
@@ -127,44 +98,59 @@ fun RegisterScreen(
                         shape = RoundedCornerShape(8.dp)
                     )
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(32.dp))
 
-                    OutlinedTextField(
-                        value = telefono,
-                        onValueChange = { telefono = it },
-                        placeholder = {
-                            Text(
-                                "Teléfono",
-                                color = Color(0xFFBBBBBB),
-                                fontSize = 14.sp
-                            )
-                        },
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = Color(0xFFE0E0E0),
-                            unfocusedBorderColor = Color(0xFFE0E0E0),
-                            focusedTextColor = Color(0xFF4A4A4A),
-                            unfocusedTextColor = Color(0xFF4A4A4A)
+                    // Botón Ingresar
+                    Button(
+                        onClick = { onLoginClick() },
+                        modifier = Modifier
+                            .width(180.dp)
+                            .height(48.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFF7CB342)
                         ),
-                        shape = RoundedCornerShape(8.dp)
+                        shape = RoundedCornerShape(24.dp)
+                    ) {
+                        Text(
+                            text = "Ingresar",
+                            color = Color.White,
+                            fontSize = 16.sp
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    // Texto "Olvidó su clave"
+                    ClickableText(
+                        text = AnnotatedString("Olvidó su clave"),
+                        onClick = { onForgotPasswordClick() },
+                        style = LocalTextStyle.current.copy(
+                            color = Color(0xFF8B8B9E),
+                            fontSize = 14.sp,
+                            textAlign = TextAlign.Center
+                        )
                     )
                 }
             }
 
-            Button(
+            // Botón Registrarse abajo
+            OutlinedButton(
                 onClick = { onRegisterClick() },
                 modifier = Modifier
                     .width(200.dp)
                     .height(48.dp)
                     .padding(bottom = 8.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF7CB342)
+                shape = RoundedCornerShape(24.dp),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    contentColor = Color(0xFF7986CB),
+                    containerColor = Color.White
                 ),
-                shape = RoundedCornerShape(24.dp)
+                border = ButtonDefaults.outlinedButtonBorder.copy(
+                    width = 1.5.dp
+                )
             ) {
                 Text(
-                    text = "Iniciar sesión",
-                    color = Color.White,
+                    text = "Registrarse",
                     fontSize = 16.sp
                 )
             }
@@ -176,6 +162,8 @@ fun RegisterScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun RegisterScreenPreview() {
-    RegisterScreen()
+fun DashboardLoginScreenPreview() {
+    DashboardLoginScreen()
 }
+
+
